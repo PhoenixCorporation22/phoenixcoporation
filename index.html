@@ -1,0 +1,552 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width,initial-scale=1.0">
+        <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Tangerine">
+        <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Montserrat">
+        <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Ubuntu">
+        <link rel="stylesheet"
+  href="https://fonts.googleapis.com/css?family=Raleway">
+        <link rel="stylesheet" href="https://unpkg.com/swiper@8/swiper-bundle.min.css">
+        <style>
+            *{
+                margin:0;
+                padding:0;
+            }
+            html {
+                scroll-behavior:smooth;
+            }
+            .container {
+                width:100%;
+                max-height:100vh;
+                box-sizing:border-box;
+            }
+            .nav-bar {
+                height:90px;
+                width:100%;
+                align-items:center;
+                display:flex;
+                /*position:fixed;*/
+                background:#fff;
+            }
+            .logo {
+                width:100px;
+                height:80px;
+                cursor:pointer;
+                margin-bottom:10px;
+                margin-top:5px;
+                margin-left:1vh;
+                border-radius:10px;
+            }
+            .menu-icon {
+                width:50px;
+                height:50px;
+                margin-right:2vh;
+                cursor:pointer;
+                display:block;
+            }
+            nav {
+                align-items:right;
+                flex:1;
+                text-align:right;
+            }
+            nav ul {
+                width:100%;
+                background:#b4e9f6;
+                position:absolute;
+                top:90px;
+                right:0;
+                z-index:2;
+                list-style:none;
+                text-align:center;
+            }
+            nav ul li {
+                display:block;
+                margin-top:10px;
+                margin-bottom:10px;
+                margin-right:50px;
+            }
+            nav ul li a {
+                color:black;
+                display:inline-block;
+                margin-block:2px;
+                text-decoration:none;
+                position:relative;
+            }
+            nav ul li a::after {
+                content:'';
+                width:100%;
+                height:1px;
+                background-color:#d00000;
+                border-radius:4px;
+                position:absolute;
+                left:0;
+                bottom:0;
+                transform:scaleX(0);
+                transform-origin:left;
+                transition:transform .25s ease;
+            }
+            nav ul li a:hover {
+                color:red;
+            }
+            nav ul li a:hover::after {
+                transform:scaleX(1);
+            }
+            #menulist {
+                overflow:hidden;
+                transition:0.5s;
+            }
+            .home {
+                padding-top:30vh;
+                height:30vh;
+                background:url('phoenixcorpbg.jpg');
+                background-size:cover;
+                padding-bottom:30vh;
+                border-bottom:5px dotted black;
+                width:100%;
+                
+            }
+            .home::after {
+                content:'';
+                width:10px;
+                height:57%;
+                background:linear-gradient(#000000,#ff0000);
+                position:absolute;
+                left:-40px;
+                top:8px;
+            }
+            .home h1 {
+                font-family:'Ubuntu',serif;
+                font-size:40px;
+                padding-left:4vh;
+                padding-top:10px;
+                padding-bottom:10px;
+            }
+            .home-logo {
+                width:100px;
+                height:100px;
+                margin-left:4vh;
+                border:2px solid black;
+                border-radius:10px;
+            }
+            .catch-line {
+                padding-left:4vh;
+                font-family:Serif;
+                font-size:25px;
+            }
+            .intro {
+                background:url('aboutbg.jpg') no-repeat center center fixed;
+                height:100vh;
+                border-bottom:5px dotted black;
+            }
+            .intro h2 {
+                font-family:'Raleway',serif;
+                font-size:60px;
+                text-align:center;
+                padding-top:2vh;
+                text-align:center;
+            }
+            .intro .abouth3 {
+                font-family:'Tangerine',serif;
+                font-size:50px;
+                text-align:center;
+                padding-top:2vh;
+            }
+            .intro .para-about {
+                font-family:'Montserrat',serif;
+                font-size:30px;
+                padding-left:2vh;
+                padding-right:2vh;
+                padding-top:2vh;
+                padding-bottom:2vh;
+                text-align:center;
+            }
+            .intro ul li {
+                font-family:serif;
+                font-size:20px;
+                padding-left:2vh;
+                padding-right:2vh;
+                padding-top:2vh;
+            }
+            .akash {
+                padding-bottom:10px;
+            }
+            .asmit {
+                padding-bottom:10px;
+            }
+            .biprayan {
+                padding-bottom:10px;
+            }
+            .srijani {
+                padding-bottom:10px;
+            }
+            .skills {
+                background:url('skillsbg.jpg') no-repeat center center fixed;
+                width:100%;
+                padding-bottom:3vh;
+                border-bottom:5px dotted black;
+            }
+            .skills h2 {
+                font-family:'Raleway',serif;
+                font-size:60px;
+                padding-top:2vh;
+                text-align:center;
+                text-align:center;
+            }
+            .skills h3 {
+                font-family:'Tangerine',serif;
+                font-size:50px;
+                padding-top:2vh;
+                text-align:center;
+            }
+            .skills p {
+                font-family:'Montserrat',serif;
+                font-size:30px;
+                text-align:center;
+                padding-left:2vh;
+                padding-right:2vh;
+                padding-top:2vh;
+                padding-bottom:2vh;
+            }
+            .skills-bar{
+                font-size:25px;
+                padding-top:2vh;
+                padding-bottom:5vh;
+                text-align:center;
+            }
+            .skills-bar h4 {
+                padding-bottom:2vh;
+                padding-top:3vh;
+            }
+            .progress-bar {
+                background:#959595;
+                width:300px;
+                height:5px;
+                border-radius:5px;
+                margin-left:7vh;
+            }
+            .progress-bar div {
+                width:0%;
+                border-radius:5px;
+                height:5px;
+            }
+            .progress-bar div span {
+                font-family:Sans-Serif;
+                font-size:15px;
+                height:25px;
+                width:25px;
+                background:lightgrey;
+                border-radius:50%;
+                float:right;
+                margin-top:-10px;
+                margin-right:-20px;
+                text-align:center;
+                color:black;
+                display:flex;
+                align-items:center;
+                justify-content:center;
+            }
+            .front-end {
+                background:#f20000;
+                animation:front-end 1s linear forwards;
+            }
+            .back-end {
+                background:#5900ff;
+                animation:back-end 1s linear forwards;
+            }
+            .blockchain {
+                background:#ffa200;
+                animation:blockchain 1s linear forwards;
+            }
+            .webdesigning {
+                background:#d400ff;
+                animation:webdesigning 1s linear forwards;
+            }
+            .front-end span {
+                border:1px solid #f20000;
+            }
+            .back-end span {
+                border:1px solid #5900ff;
+            }
+            .blockchain span {
+                border:1px solid #ffa200;
+            }
+            .webdesigning span {
+                border:1px solid #d400ff;
+            }
+            @keyframes front-end {
+                100% {
+                    width:80%;
+                }
+            }
+            @keyframes back-end {
+                100% {
+                    width:50%;
+                }
+            }
+            @keyframes blockchain {
+                100% {
+                    width:30%;
+                }
+            }
+            @keyframes webdesigning {
+                100% {
+                    width:40%;
+                }
+            }
+            .projects_container {
+                background:#9de6df;
+                width:100%;
+                height:600px;
+                padding-bottom:2vh;
+                border-bottom:5px dotted black;
+            }
+            .projects_container h2 {
+                font-family:'Raleway',serif;
+                font-size:60px;
+                padding-top:2vh;
+                text-align:center;
+            }
+            .projects_container p {
+                font-family:'Montserrat',serif;
+                font-size:30px;
+                text-align:center;
+                padding-left:2vh;
+                padding-right:2vh;
+                padding-top:2vh;
+                padding-bottom:10px;
+            }
+            .swiper {
+                display:flex;
+                align-items:center;
+                justify-content:center;
+                width:80%;
+                height:fit-content;
+                border:5px solid black;
+            }
+            .swiper-slide img {
+                width:100%;
+            }
+            .swiper .swiper-button-prev, .swiper .swiper-button-next {
+                color:#fff;
+            }
+            .swiper .swiper-pagination-bullet-active {
+                background:#fff;
+            }
+            .contact {
+                background:url("contactbg.jpg") no-repeat center center fixed;
+                align-items:center;
+                justify-content:center;
+                text-align:center;
+                height:50vh;
+            }
+            .contact h2 {
+                font-family:'Raleway',serif;
+                font-size:60px;
+                padding-top:2vh;
+                text-align:center;
+                padding-bottom:8vh;
+                text-align:center;
+            }
+            .contact a {
+                text-decoration:none;
+                font-size:45px;
+                color:black;
+                padding-left:2vh;
+            }
+            .contact a:hover {
+                color:red;
+            }
+            .line {
+                font-family:serif;
+                font-size:36px;
+                color:black;
+                display:flex;
+                flex-direction:row;
+                padding-top:3vh;
+                text-align:center;
+                padding-right:2vh;
+                align-items:center;
+                justify-content:center;
+                padding-top:6vh;
+            }
+            .line_text {
+                padding-right:2vh;
+            }
+            .hire {
+                background:#bb1717;
+                border:2px solid black;
+                border-radius:10px;
+                width:35%;
+                height:38px;
+                align-items:center;
+                justify-content:center;
+                align-items:center;
+            }
+            .hire a {
+                color:white;
+                text-decoration:none;
+                font-family:serif;
+                padding:2vh;
+                font-size:30px;
+            }
+            .hire a:hover {
+                color:black;
+            }
+            .footer {
+                background:#464646;
+                color:white;
+                height:3vh;
+                text-align:center;
+                border:2px solid black;
+            }
+            .footer i {
+                color:white;
+            }
+            .footer span a {
+                color:#edff00;
+                text-decoration:none;
+            }
+        </style>
+        <script src="https://kit.fontawesome.com/dabeb5f8c7.js" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <div class="container">
+            <div class="nav-bar">
+                <img src="phoenixicon.jpg" class="logo">
+                <!--Navbar-->
+                <nav>
+                    <ul id="menulist">
+                        <li><a href="#home">Home</a></li>
+                        <li><a href="#intro">About Us</a></li>
+                        <li><a href="#skills">Skills</a></li>
+                        <li><a href="#project">Projects</a></li>
+                        <li><a href="#contact">Contact us</a></li>
+                    </ul>
+                </nav>
+                <img src="menu-icon.jpg" class="menu-icon" onclick="tooglemenu()">
+            </div>
+            <!--Home section-->
+            <div class="home" id="home">
+                <img src="phoenixcorp.jpg" class="home-logo">
+                <h1>Phoenix Corporation</h1>
+                <p class="catch-line">
+                    <i>if</i>    You wanna be a programmer :<br>&nbsp&nbsp&nbsp&nbsp&nbsp&nbsp <i>print</i>("Join Us")
+                </p>
+            </div>
+            <!--about us section-->
+            <div class="intro" id="intro">
+                <h2>About us</h2>
+                <h3 class="abouth3">Who we are</h3>
+                <p class="para-about">Hello user !<br>This is Phoenix Corporation , a team of passionate programmers. We are student of 11<sup>th</sup> grade. We code to enjoy.</p>
+                <ul>
+                    <li class="akash"><h3>Akash Nath</h3>
+                    <p>Hey , I'm Akash , 17 years old student from India...passionate about fullstack development with 6 months experience of Python programming.</p></li>
+                    <li class="asmit"><h3>Asmit Roy</h3>
+                    <p>I'm Asmit Roy, a smart contract engineer,and also blockchain core developer..Also can handle back end..And I'm also a cryptographer and a trader..</p></li>
+                    <li class="biprayan"><h3>Biprayan Paul</h3>
+                    <p>Hey , I'm Biprayan , 17 years old student from India...passionate about program development with 5 months experience of C++programming</p></li>
+
+                    <li class="srijani"><h3>Srijani Bhattacharya</h3>
+                    <p>It's Srijani , aged 17 , student of West Bengal , India , passionate web-designer with 6 months of web-designing experience.</p></li>
+                </ul>
+            </div>
+            <!--skills section-->
+            <div class="skills" id="skills">
+                <h2>Skills</h2>
+                <h3>What we can do</h3>
+                <p>We have our own frontend developer , backend developer , cryptographer , web-designer , blockchain developer . Our team is able to not only fullstack development but also blockchain development with efficiency.</p>
+                <div class="skills-bar">
+                    <h4>FrontEnd</h4>
+                    <div class="progress-bar">
+                        <div class="front-end"><span>80%</span></div>
+                    </div>
+                    <h4>BackEnd</h4>
+                    <div class="progress-bar">
+                        <div class="back-end"><span>50%</span></div>
+                    </div>
+                    <h4>BlockChain</h4>
+                    <div class="progress-bar">
+                        <div class="blockchain"><span>30%</span></div>
+                    </div>
+                    <h4>Web-designing</h4>
+                    <div class="progress-bar">
+                        <div class="webdesigning"><span>40%</span></div>
+                    </div>
+                </div>
+            </div>
+            <!--projects section-->
+            <div class="projects_container" id="project">
+                <h2>Our Projects</h2>
+                <p>Here are some of your projects</p>
+                <p>Swipe for see more -></p>
+                <div class="swiper">
+                    <!-- Additional required wrapper -->
+                    <div class="swiper-wrapper">
+                        <!-- Slides -->
+                        <div class="swiper-slide"><img src="noteit.jpg"></div>
+                        <div class="swiper-slide"><img src="search_o'_pedia.jpg"></div>
+                    <!-- If we need pagination -->
+                    <div class="swiper-pagination"></div>
+                    <!-- If we need navigation buttons -->
+                    <div class="swiper-button-prev"></div>
+                    <div class="swiper-button-next"></div>
+                    </div>
+                </div>
+            </div>
+            <!--Contact section-->
+            <div class="contact" id="contact">
+                <h2>Contact Us</h2>
+                <a href="https://www.instagram.com/invites/contact/?i=1lv5bzweofkv9&utm_content=o0xpdg4"><i class="fa fa-instagram"></i></a>
+                <a href="mailto:futuredevelopers2022@gmail.com"><i class="fa fa-envelope-o"></i></a>
+                <a href="https://github.com/PhoenixCorporation22"><i class="fa fa-github"></i></a>
+                <a href="https://youtube.com/channel/UC7bGnJD7FmpYKAuMnSbwB_g"><i class="fa fa-youtube-play"></i></a>
+                <div class="line"><div class="line_text">
+                    <b>Hire Us On</b></div><div class="hire"><a href="https://www.upwork.com/freelancers/~0145c61da98a9890bd">UpWork</a></div>
+                </div>
+            </div>
+            <div class="footer">
+                <i class="fa fa-copyright"></i>
+                2022 All right reserved by <span><a href="#home">Phoenix Corporation</a></span>
+            </div>
+        </div>
+        <script>
+            var menuList=document.getElementById("menulist");
+            menuList.style.maxHeight="0px";
+            function tooglemenu() {
+                if(menuList.style.maxHeight=="0px")
+                {
+                    menuList.style.maxHeight="180px";
+                }
+                else
+                {
+                    menuList.style.maxHeight="0px";
+                }
+            }
+        </script>
+        <script src="https://unpkg.com/swiper@8/swiper-bundle.min.js"></script>
+        <script>
+            const swiper = new Swiper('.swiper',{
+                autoplay: {
+                    delay:1700,
+                    disableOnInteraction:false,
+                },
+                loop: true,
+                // If we need pagination
+                pagination: {
+                    el: '.swiper-pagination',
+                    clickable:true,
+                },
+                // Navigation arrows
+                navigation: {
+                    nextEl: '.swiper-button-next',
+                    prevEl: '.swiper-button-prev',
+                },
+                });
+        </script>
+    </body>
+</html>
